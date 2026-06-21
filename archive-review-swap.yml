@@ -1,0 +1,136 @@
+name: Archive Review Swap Thread
+
+# When a monthly Review Swap issue is closed, this parses the comment thread
+# for "Reviewed → <link>" lines, builds an archive file under
+# review-swap/archive/. The Reviewers Board table in the root README is then
+# updated by hand from that archive (see CONTRIBUTING.md).
+#
+# NOTE: This is a best-effort parser based on the comment conventions in
+# CONTRIBUTING.md. Review the generated archive file before relying on it —
+# free-text issue threads are inherently messier than structured data, and
+# this script is deliberately simple rather than trying to be clever about
+# edge cases. Treat it as a first draft, not a final source of truth.
+
+on:
+  issues:
+    types: [closed]
+
+permissions:
+  contents: write
+  issues: read
+
+jobs:
+  archive:
+    if: contains(github.event.issue.labels.*.name, 'review-swap')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch all comments on the closed issue
+        id: comments
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const comments = await github.paginate(
+              github.rest.issues.listComments,
+              {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                per_page: 100,
+              }
+            );
+            const simplified = comments.map(c => ({
+              author: c.user.login,
+              body: c.body,
+              url: c.html_url,
+            }));
+            require('fs').writeFileSync('/tmp/comments.json', JSON.stringify(simplified, null, 2));
+            return simplified.length;
+
+      - name: Parse thread and write archive
+        run: |
+          python3 - <<'PYEOF'
+          import json
+          import re
+          from pathlib import Path
+          from datetime import datetime, timezone
+
+          comments = json.loads(Path("/tmp/comments.json").read_text(encoding="utf-8"))
+
+          # Title comes from the issue title via env, e.g. "Review Swap — June 2026"
+          issue_title = """${{ github.event.issue.title }}"""
+          month_label = issue_title.split("—")[-1].strip() if "—" in issue_title else issue_title.strip()
+
+          posts = {}   # author -> {pr, reviewed_to}
+          reviews = {} # author -> [list of "Reviewed → link" targets]
+
+          pr_pattern = re.compile(r"\*\*PR:\*\*\s*(\S+)")
+          reviewed_pattern = re.compile(r"Reviewed\s*(?:→|->|-->)\s*(\S+)")
+
+          for c in comments:
+              author = c["author"]
+              body = c["body"] or ""
+
+              pr_match = pr_pattern.search(body)
+              if pr_match:
+                  posts[author] = posts.get(author, {})
+                  posts[author]["pr"] = pr_match.group(1)
+
+              reviewed_match = reviewed_pattern.search(body)
+              if reviewed_match:
+                  reviews.setdefault(author, []).append(reviewed_match.group(1))
+
+          # Build participant rows: who posted, who reviewed them (best-effort —
+          # this matches by order, not guaranteed pairing; verify manually)
+          rows = []
+          reviewers_list = list(reviews.items())
+          for i, (author, info) in enumerate(posts.items()):
+              reviewer = "_unmatched — check thread_"
+              review_link = "—"
+              if i < len(reviewers_list):
+                  reviewer = reviewers_list[i][0]
+                  review_link = reviewers_list[i][1][0] if reviewers_list[i][1] else "—"
+              rows.append((author, info.get("pr", "—"), reviewer, review_link))
+
+          table_rows = "\n".join(
+              f"| @{author} | {pr} | @{reviewer} | {link} |"
+              for author, pr, reviewer, link in rows
+          ) or "| _No participants recorded_ | — | — | — |"
+
+          archive_content = f"""# Review Swap — {month_label}
+
+          Closed: {datetime.now(timezone.utc).strftime('%Y-%m-%d')}
+          Participants: {len(posts)}
+          Swaps completed: {sum(len(v) for v in reviews.values())}
+
+          | Posted by | PR | Reviewed by | Review |
+          |---|---|---|---|
+          {table_rows}
+
+          > ⚠️ This archive was generated automatically from the issue thread. Pairings are best-effort — verify against the original thread if exact attribution matters: {{issue_url}}
+          """.replace("{issue_url}", "${{ github.event.issue.html_url }}")
+
+          # Dedent (the f-string above has leading spaces from Python indentation)
+          archive_content = "\n".join(line.lstrip() if line.strip().startswith("|") or line.strip().startswith("#") else line for line in archive_content.split("\n"))
+
+          safe_month = re.sub(r"[^a-zA-Z0-9]+", "-", month_label).strip("-").lower()
+          archive_path = Path(f"review-swap/archive/{safe_month}.md")
+          archive_path.write_text(archive_content, encoding="utf-8")
+
+          print(f"Archived to {archive_path}")
+          print(f"Posts found: {len(posts)}, Review mentions found: {sum(len(v) for v in reviews.values())}")
+          PYEOF
+
+      - name: Commit archive
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add review-swap/archive/
+          git diff --staged --quiet || git commit -m "chore: archive review swap thread - ${{ github.event.issue.title }} [skip ci]"
+          git push
+
+      - name: Note about manual review
+        run: |
+          echo "::notice::Archive generated. This script does best-effort matching of posts to reviews — please spot-check review-swap/archive/ before the Reviewers Board table is trusted as final. Update the README Reviewers Board table manually if counts look off."

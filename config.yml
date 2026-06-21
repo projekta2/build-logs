@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 Join the current Review Swap thread
+    url: https://github.com/projekta2/build-logs/issues?q=is%3Aissue+is%3Aopen+label%3Areview-swap
+    about: Don't open a new issue for this — comment on the existing open thread.
+  - name: ❓ General question
+    url: https://github.com/projekta2/build-logs/issues/new?labels=question
+    about: Anything about how this repo works.
