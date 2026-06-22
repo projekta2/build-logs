@@ -17,6 +17,7 @@
   <img src="https://img.shields.io/github/license/projekta2/build-logs?style=flat-square&color=64748b&labelColor=0f172a" />
   <img src="https://img.shields.io/badge/Maintained_by-Alexandre_Iglesias-1e3a5f?style=flat-square&labelColor=0f172a" />
   <img src="https://img.shields.io/badge/Updates-As_decisions_happen-22c55e?style=flat-square&labelColor=0f172a" />
+  <img src="https://img.shields.io/github/last-commit/projekta2/build-logs?style=flat-square&color=22c55e&labelColor=0f172a&label=Last%20update" />
 </p>
 
 <br />
