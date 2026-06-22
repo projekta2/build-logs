@@ -116,7 +116,6 @@ Each log is one decision, start to finish. Numbered chronologically, newest firs
 |---|---|---|---|---|
 | 001 | [Why PR risk scoring is a hybrid, not a pure AI verdict](build-logs/001-pr-focus-risk-scoring.md) | PR Focus | Architecture | ✅ Shipped, holding up |
 | 002 | [Why PR Focus is BYOK instead of a hosted AI backend](build-logs/002-why-pr-focus-is-byok.md) | PR Focus | Architecture | ✅ Shipped, holding up |
-| 2026-06-20 | 🔁 Review Swap opened | [Join the thread](https://github.com/projekta2/build-logs/issues/1) |
 
 <br />
 
@@ -131,6 +130,24 @@ Each log is one decision, start to finish. Numbered chronologically, newest firs
 Open an issue using the <code>Build log proposal</code> template. Good candidates: a decision you're curious about, a tradeoff you disagree with, something from <a href="https://github.com/projekta2/chaintrace-landing">ChainTrace</a>'s pure-JS OOXML writer, or TabCost's idle-detection heuristics.
 <br /><br />
 </details>
+
+<br />
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:0ea5e9,100:1e3a5f&height=2" width="100%" />
+</p>
+
+<br />
+
+## 📈 Recent Activity
+
+<br />
+
+| Date | Activity | Details |
+|---|---|---|
+| 2026-06-22 | 📓 Build Log #002 published | [Why PR Focus is BYOK instead of a hosted AI backend](build-logs/002-why-pr-focus-is-byok.md) |
+| 2026-06-20 | 📓 Build Log #001 published | [Why PR risk scoring is a hybrid, not a pure AI verdict](build-logs/001-pr-focus-risk-scoring.md) |
+| 2026-06-20 | 🔁 Review Swap opened | [Join the thread](https://github.com/projekta2/build-logs/issues/1) |
 
 <br />
 
