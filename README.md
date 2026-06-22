@@ -140,6 +140,18 @@ Open an issue using the <code>Build log proposal</code> template. Good candidate
 
 <br />
 
+## 🗺️ Roadmap
+
+<br />
+
+Curious about what's coming next? Check the [Roadmap](ROADMAP.md) for planned Build Logs and improvements to the Review Swap. I don't set dates — I write when I ship something worth breaking down.
+
+<br />
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:0ea5e9,100:1e3a5f&height=2" width="100%" />
+</p>
+
 ## 📈 Recent Activity
 
 <br />
