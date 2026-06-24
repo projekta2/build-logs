@@ -115,8 +115,11 @@ Each log is one decision, start to finish. Numbered chronologically, newest firs
 
 | # | Log | Product | Decision | Outcome |
 |---|---|---|---|---|
-| 001 | [Why PR risk scoring is a hybrid, not a pure AI verdict](build-logs/001-pr-focus-risk-scoring.md) | PR Focus | Architecture | ✅ Shipped, holding up |
+| 005 | [Freemium without dark patterns: designing the free tier limits](build-logs/005-freemium-model-design.md) | PR Focus / ChainTrace | Business Model / UX | ✅ Shipped |
+| 004 | [MV3 migration: why I moved to Manifest V3 and what broke](build-logs/004-mv3-migration.md) | PR Focus | Migration | ✅ Shipped |
+| 003 | [Gumroad vs alternatives: why I picked Gumroad for payments](build-logs/003-gumroad-vs-alternatives.md) | PR Focus | Pricing | ✅ Shipped |
 | 002 | [Why PR Focus is BYOK instead of a hosted AI backend](build-logs/002-why-pr-focus-is-byok.md) | PR Focus | Architecture | ✅ Shipped, holding up |
+| 001 | [Why PR risk scoring is a hybrid, not a pure AI verdict](build-logs/001-pr-focus-risk-scoring.md) | PR Focus | Architecture | ✅ Shipped, holding up |
 
 <br />
 
@@ -158,6 +161,9 @@ Curious about what's coming next? Check the [Roadmap](ROADMAP.md) for planned Bu
 
 | Date | Activity | Details |
 |---|---|---|
+| 2026-06-24 | 📓 Build Log #005 published | [Freemium without dark patterns: designing the free tier limits](build-logs/005-freemium-model-design.md) |
+| 2026-06-24 | 📓 Build Log #004 published | [MV3 migration: why I moved to Manifest V3 and what broke](build-logs/004-mv3-migration.md) |
+| 2026-06-24 | 📓 Build Log #003 published | [Gumroad vs alternatives: why I picked Gumroad for payments](build-logs/003-gumroad-vs-alternatives.md) |
 | 2026-06-22 | 📓 Build Log #002 published | [Why PR Focus is BYOK instead of a hosted AI backend](build-logs/002-why-pr-focus-is-byok.md) |
 | 2026-06-20 | 📓 Build Log #001 published | [Why PR risk scoring is a hybrid, not a pure AI verdict](build-logs/001-pr-focus-risk-scoring.md) |
 | 2026-06-20 | 🔁 Review Swap opened | [Join the thread](https://github.com/projekta2/build-logs/issues/1) |
