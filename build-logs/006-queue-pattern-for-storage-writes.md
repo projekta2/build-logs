@@ -123,4 +123,4 @@ For future projects, I'd consider this pattern as the default for any state that
 
 ---
 
-*This log was prompted by a sharp observation from Nazar Boyko on a dev.to article, who pointed out the race condition in the simplified example. The code above is what I actually shipped after that discussion.*
+*This log was prompted by a sharp observation from Nazar Boyko on [this dev.to article](https://dev.to/projekta2/migrating-to-manifest-v3-what-actually-broke-what-we-saved-and-what-we-gained-ed1), who pointed out the race condition in the simplified example. The code above is what I actually shipped after that discussion.*
