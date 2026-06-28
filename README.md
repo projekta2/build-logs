@@ -163,6 +163,7 @@ Curious about what's coming next? Check the [Roadmap](ROADMAP.md) for planned Bu
 
 | Date | Activity | Details |
 |---|---|---|
+| 2026-06-29 | 📓 Build Log #007 published + dev.to | [BYOK architecture for AI Chrome extensions](build-logs/007-byok-chrome-extension-architecture.md) · [dev.to article](https://dev.to/projekta2/i-built-an-ai-chrome-extension-with-zero-backend-cost-heres-the-exact-architecture-43j7) |
 | 2026-06-24 | 📓 Build Log #005 published | [Freemium without dark patterns: designing the free tier limits](build-logs/005-freemium-model-design.md) |
 | 2026-06-24 | 📓 Build Log #004 published | [MV3 migration: why I moved to Manifest V3 and what broke](build-logs/004-mv3-migration.md) |
 | 2026-06-24 | 📓 Build Log #003 published | [Gumroad vs alternatives: why I picked Gumroad for payments](build-logs/003-gumroad-vs-alternatives.md) |
