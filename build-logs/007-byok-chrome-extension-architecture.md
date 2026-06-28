@@ -4,7 +4,7 @@
 **Area:** Architecture / AI Integration
 **Date:** 2026-06-29
 **Status:** ✅ Shipped and in production
-**Also published:** [dev.to — I built an AI Chrome extension with zero backend cost](https://dev.to/projekta2/SLUG_AQUI) ← actualiza con la URL real tras publicar
+**Also published:** [dev.to — I built an AI Chrome extension with zero backend cost](https://dev.to/projekta2/i-built-an-ai-chrome-extension-with-zero-backend-cost-heres-the-exact-architecture-43j7)
 
 ---
 
