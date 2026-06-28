@@ -115,6 +115,7 @@ Each log is one decision, start to finish. Numbered chronologically, newest firs
 
 | # | Log | Product | Decision | Outcome |
 |---|---|---|---|---|
+| 007 | [BYOK architecture for AI Chrome extensions: zero backend cost](build-logs/007-byok-chrome-extension-architecture.md) | PR Focus / TabCost | Architecture / AI Integration | ✅ Shipped |
 | 006 | [Queue Pattern for `chrome.storage.local` Writes in MV3](build-logs/006-queue-pattern-for-storage-writes.md) | TabCost Pro | Concurrency / Manifest V3 | ✅ Shipped |
 | 005 | [Freemium without dark patterns: designing the free tier limits](build-logs/005-freemium-model-design.md) | PR Focus / ChainTrace | Business Model / UX | ✅ Shipped |
 | 004 | [MV3 migration: why I moved to Manifest V3 and what broke](build-logs/004-mv3-migration.md) | PR Focus | Migration | ✅ Shipped |
